@@ -7,10 +7,7 @@ import (
 	"strings"
 )
 
-type SolverDay04 struct {
-}
-
-type day04Passport struct {
+type passport struct {
 	byr string
 	iyr string
 	eyr string
@@ -21,11 +18,11 @@ type day04Passport struct {
 	cid string
 }
 
-func (p *day04Passport) Valid() bool {
+func (p *passport) Valid() bool {
 	return p.ValidIgnoringCountry() && p.cid != ""
 }
 
-func (p *day04Passport) ValidIgnoringCountry() bool {
+func (p *passport) ValidIgnoringCountry() bool {
 	return p.byr != "" &&
 		p.iyr != "" &&
 		p.eyr != "" &&
@@ -35,12 +32,8 @@ func (p *day04Passport) ValidIgnoringCountry() bool {
 		p.pid != ""
 }
 
-func (s SolverDay04) readData(strict bool) []day04Passport {
-	data, err := util.Read("data/input4.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
+func readData(strict bool) []passport {
+	data := util.MustRead("input.txt")
 	reNormal := map[string]*regexp.Regexp{
 		"byr": regexp.MustCompile("(?m)^byr:([^\\s]+)$"),
 		"iyr": regexp.MustCompile("(?m)^iyr:([^\\s]+)$"),
@@ -78,11 +71,11 @@ func (s SolverDay04) readData(strict bool) []day04Passport {
 	}
 
 	rawPassports := strings.Split(data, "\n\n")
-	passports := make([]day04Passport, len(rawPassports))
+	passports := make([]passport, len(rawPassports))
 
 	for i, d := range rawPassports {
 		d = strings.ReplaceAll(d, " ", "\n")
-		passports[i] = day04Passport{
+		passports[i] = passport{
 			byr: matchOrEmpty(d, re["byr"]),
 			iyr: matchOrEmpty(d, re["iyr"]),
 			eyr: matchOrEmpty(d, re["eyr"]),
@@ -97,9 +90,9 @@ func (s SolverDay04) readData(strict bool) []day04Passport {
 	return passports
 }
 
-func (s SolverDay04) SolveFirst() {
+func SolveFirst() {
 	var count int
-	for _, p := range s.readData(false) {
+	for _, p := range readData(false) {
 		if p.ValidIgnoringCountry() {
 			count++
 		}
@@ -107,12 +100,17 @@ func (s SolverDay04) SolveFirst() {
 	log.Printf("Solution 4.1: %v\n", count)
 }
 
-func (s SolverDay04) SolveSecond() {
+func SolveSecond() {
 	var count int
-	for _, p := range s.readData(true) {
+	for _, p := range readData(true) {
 		if p.ValidIgnoringCountry() {
 			count++
 		}
 	}
 	log.Printf("Solution 4.2: %v\n", count)
+}
+
+func main() {
+	SolveFirst()
+	SolveSecond()
 }

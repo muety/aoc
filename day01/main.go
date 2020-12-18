@@ -8,15 +8,8 @@ import (
 	"github.com/muety/aoc2020/util"
 )
 
-type SolverDay01 struct {
-}
-
-func (s SolverDay01) readData() []int {
-	lines, err := util.ReadLines("data/input1.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
+func readData() []int {
+	lines := util.MustReadLines("input.txt")
 	digits := make([]int, len(lines), len(lines))
 	for i, l := range lines {
 		d, _ := strconv.Atoi(l)
@@ -25,8 +18,8 @@ func (s SolverDay01) readData() []int {
 	return digits
 }
 
-func (s SolverDay01) SolveFirst() {
-	digits := s.readData()
+func SolveFirst() {
+	digits := readData()
 	total := len(digits)
 
 	// Brute force approach with O(n²)
@@ -42,8 +35,8 @@ func (s SolverDay01) SolveFirst() {
 	log.Println("No solution found for 1.1")
 }
 
-func (s SolverDay01) SolveSecond() {
-	digits := s.readData()
+func SolveSecond() {
+	digits := readData()
 	total := len(digits)
 
 	// Even worse brute force with O(n³)
@@ -63,4 +56,9 @@ func (s SolverDay01) SolveSecond() {
 	}
 
 	log.Println("No solution found for 1.2")
+}
+
+func main() {
+	SolveFirst()
+	SolveSecond()
 }

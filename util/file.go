@@ -25,6 +25,22 @@ func ReadLines(path string) ([]string, error) {
 	return lines, nil
 }
 
+func MustRead(path string) string {
+	s, err := Read(path)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
+func MustReadLines(path string) []string {
+	s, err := ReadLines(path)
+	if err != nil {
+		panic(err)
+	}
+	return s
+}
+
 func StreamLines(path string) (chan string, error) {
 	file, err := os.Open(path)
 	if err != nil {

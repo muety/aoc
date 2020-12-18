@@ -5,16 +5,9 @@ import (
 	"log"
 )
 
-type SolverDay03 struct {
-}
-
 // true <-> tree
-func (s SolverDay03) readData() [][]bool {
-	lines, err := util.ReadLines("data/input3.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
+func readData() [][]bool {
+	lines := util.MustReadLines("input.txt")
 	h, w := len(lines), len(lines[0])
 	grid := make([][]bool, h) // col by row <-> 1st = row, 2nd = col
 	for i, l := range lines {
@@ -28,7 +21,7 @@ func (s SolverDay03) readData() [][]bool {
 }
 
 // slope: [horizontal, vertical]
-func (s SolverDay03) traverse(grid [][]bool, slope []int) (count int) {
+func traverse(grid [][]bool, slope []int) (count int) {
 	h, w := len(grid), len(grid[0])
 	for y, x := 0, 0; y < h; {
 		if grid[y][x%w] {
@@ -39,13 +32,13 @@ func (s SolverDay03) traverse(grid [][]bool, slope []int) (count int) {
 	return count
 }
 
-func (s SolverDay03) SolveFirst() {
-	count := s.traverse(s.readData(), []int{3, 1})
+func SolveFirst() {
+	count := traverse(readData(), []int{3, 1})
 	log.Printf("Solution 3.1: %v\n", count)
 }
 
-func (s SolverDay03) SolveSecond() {
-	grid := s.readData()
+func SolveSecond() {
+	grid := readData()
 	slopes := [][]int{
 		{1, 1},
 		{3, 1},
@@ -55,7 +48,7 @@ func (s SolverDay03) SolveSecond() {
 	}
 
 	traverseMp := func(grid [][]bool, slope []int, out chan int) {
-		out <- s.traverse(grid, slope)
+		out <- traverse(grid, slope)
 	}
 
 	c := make(chan int)
@@ -73,4 +66,9 @@ func (s SolverDay03) SolveSecond() {
 	}
 
 	log.Printf("Solution 3.2: %v\n", solution)
+}
+
+func main() {
+	SolveFirst()
+	SolveSecond()
 }
