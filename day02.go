@@ -31,7 +31,7 @@ func (s SolverDay02) readData() []inputElement {
 	for i, l := range lines {
 		match := reg.FindStringSubmatch(l)
 		if len(match) != 5 {
-			log.Fatalf("failed a2 parse line '%s'\n", l)
+			log.Fatalf("failed to parse line '%s'\n", l)
 		}
 
 		from, _ := strconv.Atoi(match[1])
