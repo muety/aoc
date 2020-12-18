@@ -2,8 +2,14 @@ package util
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 )
+
+func Read(path string) (string, error) {
+	data, err := ioutil.ReadFile(path)
+	return string(data), err
+}
 
 func ReadLines(path string) ([]string, error) {
 	c, err := StreamLines(path)

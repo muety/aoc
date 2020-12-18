@@ -12,20 +12,20 @@ import (
 type SolverDay02 struct {
 }
 
-type inputElement struct {
+type day02InputElement struct {
 	a1 int
 	a2 int
 	r  rune
 	s  string
 }
 
-func (s SolverDay02) readData() []inputElement {
+func (s SolverDay02) readData() []day02InputElement {
 	lines, err := util.ReadLines("data/input2.txt")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	elements := make([]inputElement, len(lines))
+	elements := make([]day02InputElement, len(lines))
 	reg := regexp.MustCompile("(\\d+)-(\\d+) (\\w): (\\w+)")
 
 	for i, l := range lines {
@@ -36,7 +36,7 @@ func (s SolverDay02) readData() []inputElement {
 
 		from, _ := strconv.Atoi(match[1])
 		to, _ := strconv.Atoi(match[2])
-		elements[i] = inputElement{
+		elements[i] = day02InputElement{
 			a1: from,
 			a2: to,
 			r:  []rune(match[3])[0],
@@ -49,7 +49,7 @@ func (s SolverDay02) readData() []inputElement {
 
 func (s SolverDay02) SolveFirst() {
 	var count int
-	checkValid := func(e inputElement) bool {
+	checkValid := func(e day02InputElement) bool {
 		count := strings.Count(e.s, string(e.r))
 		return count >= e.a1 && count <= e.a2
 	}
@@ -63,7 +63,7 @@ func (s SolverDay02) SolveFirst() {
 
 func (s SolverDay02) SolveSecond() {
 	var count int
-	checkValid := func(e inputElement) bool {
+	checkValid := func(e day02InputElement) bool {
 		return (rune(e.s[e.a1-1]) == e.r) != (rune(e.s[e.a2-1]) == e.r) // logical xor
 	}
 	for _, e := range s.readData() {
