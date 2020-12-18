@@ -35,7 +35,6 @@ func (p *day04Passport) ValidIgnoringCountry() bool {
 		p.pid != ""
 }
 
-// true <-> tree
 func (s SolverDay04) readData(strict bool) []day04Passport {
 	data, err := util.Read("data/input4.txt")
 	if err != nil {
