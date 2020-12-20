@@ -90,7 +90,7 @@ func readData(strict bool) []passport {
 	return passports
 }
 
-func SolveFirst() {
+func solveFirst() {
 	var count int
 	for _, p := range readData(false) {
 		if p.ValidIgnoringCountry() {
@@ -100,7 +100,7 @@ func SolveFirst() {
 	log.Printf("Solution 4.1: %v\n", count)
 }
 
-func SolveSecond() {
+func solveSecond() {
 	var count int
 	for _, p := range readData(true) {
 		if p.ValidIgnoringCountry() {
@@ -111,6 +111,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

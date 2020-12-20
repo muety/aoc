@@ -16,7 +16,7 @@ func readData() [][]string {
 	return answers
 }
 
-func SolveFirst() {
+func solveFirst() {
 	var total int
 	for _, group := range readData() {
 		answers := make(map[rune]bool)
@@ -30,7 +30,7 @@ func SolveFirst() {
 	log.Printf("Solution 6.1: %v\n", total)
 }
 
-func SolveSecond() {
+func solveSecond() {
 	var total int
 	for _, group := range readData() {
 		answers := make(map[rune]int)
@@ -49,6 +49,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

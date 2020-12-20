@@ -60,7 +60,7 @@ func solveSeatIds(lines []string) []int {
 	return ids
 }
 
-func SolveFirst() {
+func solveFirst() {
 	var maxSeatId int
 	for _, id := range solveSeatIds(readData()) {
 		if id > maxSeatId {
@@ -70,7 +70,7 @@ func SolveFirst() {
 	log.Printf("Solution 5.1: %v\n", maxSeatId)
 }
 
-func SolveSecond() {
+func solveSecond() {
 	occupied := make(map[int]bool)
 	for _, id := range solveSeatIds(readData()) {
 		occupied[id] = true
@@ -93,6 +93,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

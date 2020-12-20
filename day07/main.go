@@ -114,17 +114,17 @@ func resolveCount(m map[string]rule, target string) (count int) {
 	return count + 1
 }
 
-func SolveFirst() {
+func solveFirst() {
 	rules := resolveOptions(mapRulesInverse(readData()), "shiny gold")
 	log.Printf("Solution 7.1: %v\n", len(rules))
 }
 
-func SolveSecond() {
+func solveSecond() {
 	count := resolveCount(mapRules(readData()), "shiny gold")
 	log.Printf("Solution 7.2: %v\n", count-1)
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

@@ -32,12 +32,12 @@ func traverse(grid [][]bool, slope []int) (count int) {
 	return count
 }
 
-func SolveFirst() {
+func solveFirst() {
 	count := traverse(readData(), []int{3, 1})
 	log.Printf("Solution 3.1: %v\n", count)
 }
 
-func SolveSecond() {
+func solveSecond() {
 	grid := readData()
 	slopes := [][]int{
 		{1, 1},
@@ -69,6 +69,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

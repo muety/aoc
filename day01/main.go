@@ -18,7 +18,7 @@ func readData() []int {
 	return digits
 }
 
-func SolveFirst() {
+func solveFirst() {
 	digits := readData()
 	total := len(digits)
 
@@ -35,7 +35,7 @@ func SolveFirst() {
 	log.Println("No solution found for 1.1")
 }
 
-func SolveSecond() {
+func solveSecond() {
 	digits := readData()
 	total := len(digits)
 
@@ -59,6 +59,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }

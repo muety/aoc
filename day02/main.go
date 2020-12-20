@@ -40,7 +40,7 @@ func readData() []inputElement {
 	return elements
 }
 
-func SolveFirst() {
+func solveFirst() {
 	var count int
 	checkValid := func(e inputElement) bool {
 		count := strings.Count(e.s, string(e.r))
@@ -54,7 +54,7 @@ func SolveFirst() {
 	log.Printf("Solution 2.1: %v\n", count)
 }
 
-func SolveSecond() {
+func solveSecond() {
 	var count int
 	checkValid := func(e inputElement) bool {
 		return (rune(e.s[e.a1-1]) == e.r) != (rune(e.s[e.a2-1]) == e.r) // logical xor
@@ -68,6 +68,6 @@ func SolveSecond() {
 }
 
 func main() {
-	SolveFirst()
-	SolveSecond()
+	solveFirst()
+	solveSecond()
 }
